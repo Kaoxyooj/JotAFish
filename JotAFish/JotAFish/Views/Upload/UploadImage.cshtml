@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "UploadImage";
+}
+
+@{
+    string location = "../../images/" + ViewBag.newFileName;
+    if (Request["photoChoice"] != null)
+    {
+        ViewBag.imagePath = @"images/" + Request["photoChoice"];
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @*<title>Image Upload</title>*@
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend style="text-align:center"> Jot A Fish </legend>
+            <label for="Upload">Add a Jot</label>
+            <input type="file" name="Image" />
+            <br />
+            <input type="submit" value="Upload" />
+        </fieldset>
+    </form>
+            <style>               
+                        #map {
+                            width: 600px;
+                            height: 600px;
+                            float:right;
+                        }
+            </style>
+           <script>
+               $(window).on('scroll', function () {
+                   var scrollPos = $(document).scrollTop();
+                   $('#map').css({
+                       top: scrollPos
+                   });
+               }).scroll();
+           </script>
+    @*@if (ViewBag.imagePath != "")
+        {
+
+            if (ViewBag.newFileName != null)
+            {
+                <div class="row">
+                    <div class="result; col-md-7">
+                        <img src=@location alt="image" style="width:50%; height:50% " />
+                    </div>
+
+                    <div style="top:300px; margin-left:850px; position:fixed">
+                        <h1 style="text-decoration: underline;">Weather Details</h1>
+
+                        @if (ViewBag.Date != "0")
+                        {
+                            <div class="Date">
+                                <h3>Date of Picture:</h3>
+                                <h6>@ViewBag.Date</h6>
+                                <br>
+                            </div>
+                        }
+
+                        @foreach (var i in ViewBag.PastWeather)
+                        {
+                            <div id="here">
+                                <div>
+                                    <h3>Temperature:</h3>
+                                    @(i.maxtempF)
+                                    <br>
+                                </div>
+                                @foreach (var w in i.hourly)
+                                {
+                                    <div>
+                                        <h3>Barometric Pressure:</h3>
+                                        @(w.pressure)
+                                        <br>
+                                    </div>
+                                    foreach (var d in w.weatherDesc)
+                                    {
+                                        <div>
+                                            <h3>Conditions:</h3>
+                                            @(d.value)
+                                            <br>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        }*@
+    <div class="row">
+        <div>
+            <h2>Jots</h2>
+            <div id="map" class="col-md-6" style="padding:1px;
+   border:3px solid #000000;
+   background-color:#000;">
+            </div>
+            @{
+                var counter = 0;
+                List<DateTime> date = new List<DateTime>();
+                List<int> mxtmpF = new List<int>();
+                List<int> pressure = new List<int>();
+                List<object> condition = new List<object>();
+                foreach (var item in ViewBag.info)
+                {
+
+                    foreach (var add in item)
+                    {
+                        //date.Add(@add.date);
+                        mxtmpF.Add(@add.maxtempF);
+                        foreach (var desc in add.hourly)
+                        {
+                            pressure.Add(@desc.pressure);
+                            foreach (var con in desc.weatherDesc)
+                            {
+                                condition.Add(@con.value);
+                            }
+                        }
+                    }
+                }
+
+                foreach (var image in ViewBag.P)
+                {
+                    <a class="imgWrap">
+                        <img src="@Url.Content(image)" alt="pic" style="width:25%; height:25%; padding:1px; border:1px solid #000000; background-color:#000;" />
+                        <p class="imgDescription">
+                            Date : @ViewBag.date[@counter]
+                            Temperature F: @mxtmpF[@counter]
+                            Barometric Pressure : @pressure[@counter]
+                            Conditions : @condition[@counter]
+                        </p>
+                    </a>
+                    counter++;
+                }
+
+
+            }
+        </div>
+    </div>
+
+</body>
+
+</html>

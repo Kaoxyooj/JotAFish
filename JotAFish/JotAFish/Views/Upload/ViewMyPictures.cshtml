@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "ViewMyPictures";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>ViewMyPictures</h2>
+        @{
+            var counter = 0;
+            foreach (var image in ViewBag.P)
+            {
+                <img id="@counter" src="@Url.Content(image)" alt="English" style="width:25%; height:25%" />
+                counter++;
+            }
+        }
+    </div>
+</div>

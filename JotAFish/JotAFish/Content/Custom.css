@@ -1,0 +1,117 @@
+﻿html, body {
+    background-image: url('../../bg.jpg');
+}
+
+.imgWrap {
+    position: relative;
+    height: 500px;
+    width: 500px;
+}
+
+.imgDescription {
+    /*position: absolute;*/
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 300px;
+    color: #0026ff;
+    visibility: hidden;
+    opacity: 0;
+    /*remove comment if you want a gradual transition between states*/
+    /*-webkit-transition: visibility opacity 0.2s;*/
+}
+
+.imgWrap:hover .imgDescription {
+    visibility: visible;
+    opacity: 1;
+}
+
+#map {   
+    
+}
+
+#map2 {
+    height: 100%;
+    margin-left: 500px;
+    padding: 0;
+    width: 50em;
+}
+
+#cf {
+    position: fixed;
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+    #cf img {
+        position: absolute;
+        left: -100%;
+        margin-top: 5%;
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        transition: opacity 1s ease-in-out;
+    }
+
+        #cf img.top:hover {
+            opacity: 0;
+        }
+
+#img2 img {
+    margin-top: 112%;
+    margin-left: 345%;
+}
+
+.navbar-inverse {
+    background-color: #444476;
+    border-color: #000000;
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 3px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #FFFFFF;
+}
+
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #FFFFFF;
+}
+
+a {
+    color: #337ab7;
+    /*text-decoration: overline;*/
+}
+
+#d1 {
+    position: fixed;
+    width: 50%;
+    margin: 200px 860px;
+    font-size: 800%;
+    /*font-family: -webkit-pictograph;*/
+    font-family: 'Dancing Script';
+}
+
+#d2 {
+    position: fixed;
+    margin: 590px -160px;
+    width: 50%;
+    font-size: 800%;
+    /*font-family: -webkit-pictograph;*/
+    font-family: 'Dancing Script';   
+}
+
+#d3 {
+}
